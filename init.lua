@@ -570,7 +570,7 @@ require('lazy').setup({
         pyright = {
           settings = {
             python = {
-              analysis = { autoSearchPaths = true },
+              analysis = { autoSearchPaths = true, extraPaths = { '/nix/var/nix/profiles/default/share' } },
             },
           },
         },
@@ -897,6 +897,20 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
       '3rd/image.nvim',
     },
+    config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          filetered_items = {
+            visible = true,
+            --I'm sure theres more to look into
+            --hide_dotfiles = true,
+            --hide_hidden=true,
+            hide_gitignored = true,
+          },
+        },
+      }
+    end,
+    vim.keymap.set('n', '<leader>st', '<Cmd>Neotree toggle<CR>', { desc = '[S]earch [T]ree' }),
   },
 
   {
